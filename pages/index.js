@@ -8,8 +8,8 @@ import { getSortedPostsData } from "../lib/posts";
 export async function getStaticProps() {
   // const allPostsData = getSortedPostsData();
   const res = await fetch(`https://dark-pig-sock.cyclic.app/listings?id=${1}`);
-  const data = await res.json();
-  const listing = JSON.parse(JSON.stringify(data));
+  const listing = await res.json();
+  // const listing = JSON.parse(JSON.stringify(data));
   return {
     props: {
       listing,
@@ -18,8 +18,9 @@ export async function getStaticProps() {
 }
 
 export default function Home({ listing }) {
+  console.log(listing);
   return (
-    <h1>Hello</h1>
+    <h1>Hello world {listing[0].id}</h1>
     // <Layout home>
     //   <h1>Hello Amigos.</h1>
     //   <section className={utilStyles.headingMd}>
