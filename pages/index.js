@@ -7,7 +7,7 @@ import { getSortedPostsData } from "../lib/posts";
 
 export async function getStaticProps() {
   // const allPostsData = getSortedPostsData();
-  const res = await fetch(`https://dark-pig-sock.cyclic.app/listings?id=${1}`);
+  const res = await fetch(`https://witty-yak-sarong.cyclic.app/`);
   const listing = await res.json();
   // const listing = JSON.parse(JSON.stringify(data));
   return {
@@ -20,7 +20,7 @@ export async function getStaticProps() {
 export default function Home({ listing }) {
   console.log(listing);
   return (
-    <h1>Hello world {listing[0].id}</h1>
+    <h1>Hello world</h1>
     // <Layout home>
     //   <h1>Hello Amigos.</h1>
     //   <section className={utilStyles.headingMd}>

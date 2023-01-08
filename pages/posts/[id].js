@@ -7,8 +7,12 @@ import utilStyles from "../../styles/utils.module.css";
 
 export async function getStaticPaths() {
   // const paths = getAllPostIds();
-  const res = await fetch(`https://dark-pig-sock.cyclic.app/listings`);
+  const apiURL1 = `https://my-json-server.typicode.com/Aime78/mockupapi/users`;
+
+  // const apiURL2 = `https://jsonplaceholder.typicode.com/users/`;
+  const res = await fetch(`${apiURL1}`);
   const data = await res.json();
+
   const paths = data.map((listing) => {
     return {
       params: {
@@ -25,10 +29,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   // const postData = await getPostData(params.id);
+  const apiURL1 = `https://my-json-server.typicode.com/Aime78/mockupapi/users`;
+  // const apiURL2 = `https://jsonplaceholder.typicode.com/users/`;
   const id = params.id;
-  const res = await fetch(`https://dark-pig-sock.cyclic.app/listings?id=${id}`);
-  const data = await res.json();
-  const listingData = JSON.parse(JSON.stringify(data));
+  const res = await fetch(`${apiURL1}?id=${id}`);
+  const listingData = await res.json();
+  // const listingData = data.users;
+  // const listingData = JSON.parse(JSON.stringify(data));
   return {
     props: {
       listingData,
@@ -36,9 +43,9 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function Post() {
+export default function Post({ listingData }) {
   return (
-    <h1>Amigos ID</h1>
+    <h1>Amigos ID ({listingData[0].name})</h1>
 
     // <Layout>
 
